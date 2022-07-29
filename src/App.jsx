@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="container">
       <h1>Tic Tac Too</h1>
-      <h3>Es turno de {turno}</h3>
+      <h2>Es turno de <span>{turno}</span></h2>
       <Tablero turno={turno} toggleTurno={handleToggleTurno}/>
     </div>
   )
