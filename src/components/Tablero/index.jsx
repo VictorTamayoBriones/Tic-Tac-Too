@@ -1,14 +1,24 @@
+import { useState } from "react";
+import { verifyWinner } from "../../verifyWinnner";
 import { Casilla, TableroContainer } from "./style";
 
-export const Tablero = ({turno}) =>{
+export const Tablero = ({turno, toggleTurno}) =>{
 
-    const tablero = ['x', 'o','x', 'o', 'x','x', 'o', 'o','x'];
+    const [tablero, setTablero]=useState(['', '','', '', '','', '', '',''])
+ 
+    const handleMark = (i) => {
+        const tableroTemp = [...tablero];
+        tableroTemp[i] = turno;
+        setTablero(tableroTemp);
+        verifyWinner(tableroTemp);
+        toggleTurno();
+    }
 
     return(
         <TableroContainer>
             {
                 tablero.map((casilla, i)=>(
-                    <Casilla key={i}>{casilla}</Casilla>
+                    <Casilla key={i} onClick={ ()=>handleMark(i) } >{casilla}</Casilla>
                 ))
             }
         </TableroContainer>
